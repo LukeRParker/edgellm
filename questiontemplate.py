@@ -17,7 +17,7 @@ callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
 # Verbose is required to pass to the callback manager
 
 # Make sure the model path is correct for your system!
-llm = LlamaCpp(model_path="./model/GPT4All-13B-snoozy.ggml.q4_0.bin", callback_manager=callback_manager, verbose=True, n_ctx=512, n_threads=12, temperature=0)
+llm = LlamaCpp(model_path="./model/GPT4All-13B-snoozy.ggml.q5_0.bin", callback_manager=callback_manager, verbose=True, n_ctx=512, n_threads=12, temperature=0)
 
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
