@@ -93,7 +93,7 @@ class CustomOutputParser(AgentOutputParser):
 
 output_parser = CustomOutputParser()
 
-llm = LlamaCpp(model_path="./models/GPT4All-13B-snoozy.ggml.q5_0.bin", verbose=True, n_ctx=1024, n_threads=8, temperature=0)
+llm = LlamaCpp(model_path="./models/GPT4All-13B-snoozy.ggml.q5_0.bin", verbose=True, n_ctx=512, temperature=0)
 
 # LLM chain consisting of the LLM and a prompt
 llm_chain = LLMChain(llm=llm, prompt=prompt)
