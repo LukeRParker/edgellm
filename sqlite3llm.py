@@ -149,7 +149,10 @@ agent = LLMSingleActionAgent(
 
 agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True)
 
-agent_executor.run("Using the available tools, tell me what types of Iris are in the table called iris?")
+question = "Using the available tools, tell me what types of Iris are in the table called iris?"
+print(question)
+
+agent_executor.run(question)
 #agent_executor.run("In the iris table, what is the average sepal length?")
 
 
