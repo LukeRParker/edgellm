@@ -44,15 +44,16 @@ agent_executor = create_sql_agent(
     verbose=True
 )
 
-#search = WikipediaAPIWrapper()
-search = load_tools(["wikipedia"], llm=llm)
-
+search = WikipediaAPIWrapper()
 
 tools = [
     Tool(
         name = "Wikipedia Search",
         func=search.run,
-        description="useful for descriptions and facts about things such as objects, people and places"
+        description="A wrapper around Wikipedia. "
+        "Useful for when you need to answer general questions about "
+        "people, places, companies, facts, historical events, or other subjects. "
+        "Input should be a search query."
     ),
     Tool(
         name = "Database Search",
