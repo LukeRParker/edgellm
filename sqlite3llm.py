@@ -32,7 +32,7 @@ from langchain.sql_database import SQLDatabase
 
 llm = LlamaCpp(model_path="./model/GPT4All-13B-snoozy.ggml.q5_0.bin", verbose=True, n_ctx=2048, temperature=0)
 
-db = SQLDatabase.from_uri('sqlite:///iris.db').head(50)
+db = SQLDatabase.from_uri('sqlite:///iris.db')
 sqltoolkit = SQLDatabaseToolkit(db=db,llm=llm)
 
 
