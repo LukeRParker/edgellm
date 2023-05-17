@@ -13,7 +13,10 @@ tools = [
     Tool(
         name = "Current Search",
         func=search.run,
-        description="useful for when you need to answer questions about current events or the current state of the world"
+        description="A wrapper around Wikipedia. "
+        "Useful for when you need to answer general questions about "
+        "people, places, companies, facts, historical events, or other subjects. "
+        "Input should be a search query."
     ),
 ]
 
@@ -108,4 +111,4 @@ agent = LLMSingleActionAgent(
 
 agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True)
 
-agent_executor.run("tell me about canada?")
+agent_executor.run("Give me some facts about the country Canada?")
