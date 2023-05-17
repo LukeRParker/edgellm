@@ -32,7 +32,7 @@ from langchain.sql_database import SQLDatabase
 
 llm = LlamaCpp(model_path="./model/GPT4All-13B-snoozy.ggml.q5_0.bin", verbose=True, n_ctx=2048, temperature=0)
 
-db = SQLDatabase.from_uri('sqlite:///iris.db')
+db = SQLDatabase.from_uri('sqlite:///iris.db').head(50)
 sqltoolkit = SQLDatabaseToolkit(db=db,llm=llm)
 
 
@@ -149,7 +149,7 @@ agent = LLMSingleActionAgent(
 
 agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True)
 
-agent_executor.run("Tell me what an iris is, and then describe the iris table")
+agent_executor.run("Tell me about the iris plant using the tools available")
 #agent_executor.run("In the iris table, what is the average sepal length?")
 
 
