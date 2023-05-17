@@ -108,4 +108,4 @@ agent = LLMSingleActionAgent(
 
 agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True)
 
-agent_executor.run("How many people live in canada?")
+agent_executor.run("tell me about canada?")
