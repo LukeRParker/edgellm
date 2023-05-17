@@ -21,7 +21,7 @@ df.to_sql('iris', conn, if_exists='replace', index=False)
 # Close connection
 conn.close()
 
-from langchain.agents import Tool, AgentExecutor, LLMSingleActionAgent, AgentOutputParser, create_sql_agent
+from langchain.agents import Tool, AgentExecutor, LLMSingleActionAgent, AgentOutputParser, create_sql_agent, load_tools
 from langchain.prompts import StringPromptTemplate
 from langchain import OpenAI, LLMChain
 from typing import List, Union
@@ -32,10 +32,11 @@ from langchain.utilities import WikipediaAPIWrapper
 from langchain.agents.agent_toolkits import SQLDatabaseToolkit
 from langchain.sql_database import SQLDatabase
 
-llm = LlamaCpp(model_path="./model/GPT4All-13B-snoozy.ggml.q5_0.bin", verbose=True, n_ctx=1024, temperature=0)
+llm = LlamaCpp(model_path="./model/GPT4All-13B-snoozy.ggml.q5_0.bin", verbose=True, n_ctx=2048, temperature=0)
 
 db = SQLDatabase.from_uri('sqlite:///iris.db')
 sqltoolkit = SQLDatabaseToolkit(db=db,llm=llm)
+
 
 agent_executor = create_sql_agent(
     llm=llm,
@@ -43,13 +44,15 @@ agent_executor = create_sql_agent(
     verbose=True
 )
 
-search = WikipediaAPIWrapper()
+#search = WikipediaAPIWrapper()
+search = load_tools(["wikipedia"], llm=llm)
+
 
 tools = [
     Tool(
         name = "Wikipedia Search",
         func=search.run,
-        description="useful for when you need to get information about an object, person, or place"
+        description="useful for descriptions and facts about things such as objects, people and places"
     ),
     Tool(
         name = "Database Search",
