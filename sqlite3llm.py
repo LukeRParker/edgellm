@@ -8,8 +8,6 @@ from sklearn import datasets
 # Load iris dataset
 iris = datasets.load_iris()
 df = pd.DataFrame(data=iris.data, columns=iris.feature_names).head(20)
-print(df.shape)
-print(df.head())
 
 # Create SQLite database and cursor
 conn = sqlite3.connect('iris.db')
